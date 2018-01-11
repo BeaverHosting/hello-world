@@ -10,6 +10,8 @@ You need golang 1.9 or later to compile the source.
 
 ## Deployment
 
+### Local
+
 To start the go program :
 
 ```
@@ -35,3 +37,31 @@ To check if the server is up and running, go to :
 ```
 http://localhost:8080/alive
 ```
+
+### Docker
+
+To use the app with docker user the Dockerfile, build the image with :
+
+```
+docker image build . -t bh-p-hello-world
+```
+
+Start a container with :
+
+```
+docker run -d -p 8080:8080 bh-p-hello-world -e customername=Kevin
+```
+
+### Result
+
+If the server is up and running you should see this :
+
+```
+{
+    app_name: "hello-world",
+    customer_name: "Kevin",
+    date_start: "2018-01-11T23:21:58.410500459Z",
+    status: 200
+}
+```
+
