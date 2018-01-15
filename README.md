@@ -49,7 +49,7 @@ docker image build . -t bh-p-hello-world
 Start a container with :
 
 ```
-docker run -d -p 8080:8080 bh-p-hello-world -e customername=Kevin
+docker run --name hello-world-kevin -d -p 8080:8080 -e customername=Kevin bh-p-hello-world
 ```
 
 ### Result
