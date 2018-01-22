@@ -52,6 +52,12 @@ Start a container with :
 docker run --name hello-world-kevin -d -p 8080:8080 -e customername=Kevin bh-p-hello-world
 ```
 
+Start from docker compose :
+
+```
+docker-compose up -d
+```
+
 ### Result
 
 If the server is up and running you should see this :
