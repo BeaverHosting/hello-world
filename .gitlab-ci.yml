@@ -10,5 +10,5 @@ build:
  before_script:
   - GIT_SSL_NO_VERIFY=true
  script:
-  - go build hello-world
+  - go build
   - ./hello-world
