@@ -11,4 +11,3 @@ build:
   - GIT_SSL_NO_VERIFY=true
  script:
   - go build
-  - ./hello-world
