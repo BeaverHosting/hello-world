@@ -1,5 +1,5 @@
-before_script:
-  - GIT_SSL_NO_VERIFY=true
+variables:
+  GIT_SSL_NO_VERIFY: "true"
 
 stages:
  - build
@@ -7,6 +7,8 @@ stages:
 build:
  stage: build
  image: golang:1.9.2
+ before_script:
+  - GIT_SSL_NO_VERIFY=true
  script:
   - go build hello-world
   - ./hello-world
