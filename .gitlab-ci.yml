@@ -4,6 +4,7 @@ variables:
 stages :
  - build
  - test
+ - deploy
 
 build_go:
  stage: build
@@ -22,3 +23,9 @@ build_docker_image:
  image: docker:latest
  script:
   - docker image build -t bh-p-hello-world .
+
+deploy_docker_image:
+  stage: build
+  image: docker:latest
+  script:
+   - docker login registry.beaverhosting.fr -u testuser -p testpassword
