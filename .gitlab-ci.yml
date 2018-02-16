@@ -24,6 +24,7 @@ deploy_docker_image:
   stage: deploy
   image: docker:latest
   script:
+   - docker login registry.beaverhosting.fr -u testuser -p testpassword
    - docker image build -t bh-p-hello-world .
    - docker tag bh-p-hello-world registry.beaverhosting.fr/bh-p-hello-world:1.0.0
    - docker push registry.beaverhosting.fr/bh-p-hello-world:1.0.0
