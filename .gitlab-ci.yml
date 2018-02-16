@@ -10,26 +10,21 @@ build_go:
  stage: build
  image: golang:1.9.2
  script:
-  - cd build && go build
- artifacts:
-  paths:
-   - build/
+  - go build
 
 test_go:
  stage: test
  image: golang:1.9.2
  script:
-  - cd build && go test
+  - go test
  dependencies:
   - build_go
- artifacts:
-  paths:
-   - build/
 
 deploy_docker_image:
-  stage: build
+  stage: deploy
   image: docker:latest
   script:
    - docker image build -t bh-p-hello-world .
    - docker tag bh-p-hello-world registry.beaverhosting.fr/bh-p-hello-world:1.0.0
    - docker push registry.beaverhosting.fr/bh-p-hello-world:1.0.0
+  when: manual
