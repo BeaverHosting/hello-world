@@ -1,11 +1,24 @@
 variables:
   GIT_SSL_NO_VERIFY: "true"
 
-stages:
+stages :
  - build
+ - test
 
-build:
+build_go:
  stage: build
  image: golang:1.9.2
  script:
   - go build
+
+test_go:
+ stage: test
+ image: golang:1.9.2
+ script:
+  - go test
+
+build_docker_image:
+ stage: build
+ image: docker:latest
+ script:
+  - docker image build -t bh-p-hello-world .
