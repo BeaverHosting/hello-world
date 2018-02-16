@@ -1,6 +1,5 @@
 variables:
   GIT_SSL_NO_VERIFY: "true"
-  DOCKER_IMAGE_VERSION: "1.0.0"
 
 stages :
  - build
@@ -12,18 +11,25 @@ build_go:
  image: golang:1.9.2
  script:
   - go build
+ artifacts:
+  paths:
+   - build/
 
 test_go:
  stage: test
  image: golang:1.9.2
  script:
   - go test
+ dependencies:
+  - build_go
+ artifacts:
+  paths:
+   - build/
 
 deploy_docker_image:
   stage: build
   image: docker:latest
   script:
-   - "docker login registry.beaverhosting.fr -u testuser -p $REGISTRY_PASSWORD"
    - docker image build -t bh-p-hello-world .
-   - "docker tag bh-p-hello-world registry.beaverhosting.fr/bh-p-hello-world:$DOCKER_IMAGE_VERSION"
-   - "docker push registry.beaverhosting.fr/bh-p-hello-world:$DOCKER_IMAGE_VERSION"
+   - docker tag bh-p-hello-world registry.beaverhosting.fr/bh-p-hello-world:1.0.0
+   - docker push registry.beaverhosting.fr/bh-p-hello-world:1.0.0
