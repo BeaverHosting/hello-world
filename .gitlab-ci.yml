@@ -10,7 +10,7 @@ build_go:
  stage: build
  image: golang:1.9.2
  script:
-  - go build
+  - cd build && go build
  artifacts:
   paths:
    - build/
@@ -19,7 +19,7 @@ test_go:
  stage: test
  image: golang:1.9.2
  script:
-  - go test
+  - cd build && go test
  dependencies:
   - build_go
  artifacts:
