@@ -1,18 +1,14 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: hello-world
-  labels:
-    run: hello-world
 spec:
-  type: NodePort
-  ports:
-  - port: 8080
-    targetPort: 80
-    protocol: TCP
-    name: http
   selector:
-    run: hello-world
+    app: hello-world
+  ports:
+  - protocol: TCP
+    port: 8080
+  type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,6 +28,6 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: beaverhosting/hello-world
+        image: beaverhosting/hello-world:latest
         ports:
-        - containerPort: 80
+        - containerPort: 8080
