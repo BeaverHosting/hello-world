@@ -58,6 +58,14 @@ Start from docker compose :
 docker-compose up -d
 ```
 
+Start with Kubernetes :
+
+```
+kubectl create -f env.yml
+kubectl create -f deployment.yml
+minikube service hello-world
+```
+
 ### Result
 
 If the server is up and running you should see this :
