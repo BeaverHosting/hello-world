@@ -31,3 +31,6 @@ spec:
         image: beaverhosting/hello-world:latest
         ports:
         - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: hello-world-env
