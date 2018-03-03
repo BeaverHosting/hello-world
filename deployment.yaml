@@ -28,9 +28,11 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: beaverhosting/hello-world:latest
+        image: registry.beaverhosting.fr/hello-world:latest
         ports:
         - containerPort: 8080
         envFrom:
           - configMapRef:
               name: hello-world-env
+      imagePullSecrets:
+        - name: registrykey
