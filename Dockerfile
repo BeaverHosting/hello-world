@@ -2,4 +2,4 @@ FROM golang:1.9.2
 EXPOSE 8080
 WORKDIR /go/src/app
 COPY main.go .
-CMD go run main.go -customer=${MY_CUSTOMER_NAME} -pod=${MY_POD_NAME}
+CMD go run main.go -customer="${MY_CUSTOMER_NAME}" -pod="${MY_POD_NAME}"

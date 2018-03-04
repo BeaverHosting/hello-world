@@ -1,5 +1,5 @@
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
   name: hello-world
 spec:
@@ -10,14 +10,14 @@ spec:
     port: 8080
   type: LoadBalancer
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-world
   labels:
     app: hello-world
 spec:
-  replicas: 1
+  replicas: 4
   selector:
     matchLabels:
       app: hello-world
@@ -36,8 +36,8 @@ spec:
               name: hello-world
         env:
           - name: MY_POD_NAME
-          valueFrom:
-            fieldRef:
-              fieldPath: spec.nodeName
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
       imagePullSecrets:
         - name: registrykey
