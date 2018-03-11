@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-world
+data:
+  MY_CUSTOMER_NAME: "Jean Kevin"
+---
 kind: Service
 apiVersion: v1
 metadata:
