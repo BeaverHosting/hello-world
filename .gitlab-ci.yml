@@ -29,11 +29,12 @@ deploy_docker_image:
    - docker login $REGISTRY_URL -u $REGISTRY_LOGIN -p $REGISTRY_PASSWORD
    - docker image build -t $IMAGE_NAME .
    - docker tag $IMAGE_NAME $REGISTRY_URL/$IMAGE_NAME:$CI_COMMIT_TAG
-   - docker push $REGISTRY_URL/$IMAGE_NAME:$CI_COMMIT_TAG
-   - docker rmi $REGISTRY_URL/$IMAGE_NAME:$CI_COMMIT_TAG
    - docker tag $IMAGE_NAME $REGISTRY_URL/$IMAGE_NAME:latest
+   - docker push $REGISTRY_URL/$IMAGE_NAME:$CI_COMMIT_TAG
    - docker push $REGISTRY_URL/$IMAGE_NAME:latest
+   - docker rmi $REGISTRY_URL/$IMAGE_NAME:$CI_COMMIT_TAG
    - docker rmi $REGISTRY_URL/$IMAGE_NAME:latest
+   - docker rmi $IMAGE_NAME
   dependencies:
    - build_go
   only:
