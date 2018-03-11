@@ -11,9 +11,10 @@ build_go:
  image: golang:1.10-alpine
  script:
   - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+  - ls
  artifacts:
   paths:
-  - /main
+  - main
 
 test_go:
  stage: test
