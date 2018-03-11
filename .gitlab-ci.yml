@@ -10,11 +10,11 @@ build_go:
  stage: build
  image: golang:1.10-alpine
  script:
-  - mkdir binaries
-  - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /binaries/main ./src
+  - cd src
+  - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
  artifacts:
   paths:
-  - binaries/
+  - src/main
 
 test_go:
  stage: test
@@ -26,7 +26,6 @@ deploy_docker_image:
   stage: deploy
   image: docker:latest
   script:
-   - cd binaries
    - docker login $REGISTRY_URL -u $REGISTRY_LOGIN -p $REGISTRY_PASSWORD
    - docker image build -t $IMAGE_NAME .
    - docker tag $IMAGE_NAME $REGISTRY_URL/$IMAGE_NAME:$CI_COMMIT_TAG
