@@ -17,7 +17,7 @@ metadata:
   labels:
     app: hello-world
 spec:
-  replicas: 4
+  replicas: 2
   selector:
     matchLabels:
       app: hello-world
@@ -39,5 +39,15 @@ spec:
             valueFrom:
               fieldRef:
                 fieldPath: metadata.name
+        livenessProbe:
+         httpGet:
+           path: /alive
+           port: 8080
+         initialDelaySeconds: 15
+         periodSeconds: 20
+        readinessProbe:
+          httpGet:
+            path: /alive
+            port: 8080
       imagePullSecrets:
         - name: registrykey

@@ -1,4 +1,4 @@
-FROM golang:1.9.2
+FROM golang:1.10-alpine
 EXPOSE 8080
 WORKDIR /go/src/app
 COPY main.go .
